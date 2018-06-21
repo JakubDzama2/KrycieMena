@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#631745</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="White">#ffffff</color>
+    <color name="Brown">#8fd211</color>
+    <color name="SaddleBrown">#8B4513</color>
+    <color name="BarBackground">#f3f73535</color>
+    <color name="Team0UnGuessed">#f3f13e3e</color>
+    <color name="Team0Guessed">#8e0000</color>
+    <color name="Team1UnGuessed">#f3547aff</color>
+    <color name="Team1Guessed">#f300108e</color>
+    <color name="Killer">#f3060101</color>
+    <color name="Passerby">#f3f7ff66</color>
+</resources>

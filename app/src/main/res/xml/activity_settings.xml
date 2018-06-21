@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <PreferenceCategory android:title="@string/pref_category_general" >
+        <CheckBoxPreference
+            android:title="@string/music_title"
+            android:summary="@string/music_summary"
+            android:key="@string/pref_music_key"
+            android:defaultValue="true"/>
+
+        <CheckBoxPreference
+            android:title="@string/sounds"
+            android:summary="@string/enable_sound_effects"
+            android:key="@string/pref_sounds"
+            android:defaultValue="true"/>
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="@string/pref_category_game" >
+
+        <ListPreference
+            android:key="@string/pref_timer_key"
+            android:title="@string/timer_title"
+            android:summary="@string/timer_summary"
+            android:defaultValue="@string/timer_default_value"
+            android:entries="@array/timer_names"
+            android:entryValues="@array/timer_values"
+            />
+    </PreferenceCategory>
+
+</PreferenceScreen>

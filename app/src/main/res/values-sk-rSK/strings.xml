@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Krycie mená</string>
+    <string name="title_activity_settings">Nastavenia</string>
+    <string name="low_number_of_words_in_database">Nie je možné začať novú hru s menším počtom slov v databáze ako 25. Najprv pridajte niekoľko slov do databázy prosím.</string>
+    <string name="pass_the_device_to_red_team_super_agent">Podajte zariadenie Super Agentovi červeného tímu.</string>
+    <string name="red_team_turn">Červený tím je na rade</string>
+    <string name="blue_team_turn">Modrý tím je na rade</string>
+    <string name="end_turn">Ukončiť ťah</string>
+    <string name="yes">Áno</string>
+    <string name="no">Nie</string>
+    <string name="do_you_want_to_delete_word">Naozaj chcete vymazať slovo:</string>
+    <string name="delete">Vymazať</string>
+    <string name="delete_successful">Vymazanie prebehlo úspešne</string>
+    <string name="add_new_word">Pridať nové slovo</string>
+    <string name="ok">Ok</string>
+    <string name="cancel">Zrušiť</string>
+    <string name="word_successfully_added">Slovo bolo úspešne pridané.</string>
+    <string name="do_you_want_to_end_your_turn">Naozaj chcete ukončiť svoj ťah?</string>
+    <string name="end_game">Ukončiť hru</string>
+    <string name="do_you_want_to_end_the_game">Naozaj chcete ukončiť hru? Aktuálny stav hry nebude uložený.</string>
+    <string name="you_have_already_guessed_this_word">Toto slovo už bolo hádané.</string>
+    <string name="do_you_want_to_guess_the_word">Chcete označiť slovo</string>
+    <string name="guess">Označiť</string>
+    <string name="blue_team_won">Modrý tím vyhral!</string>
+    <string name="red_team_won">Červený tím vyhral!</string>
+    <string name="good_job_you_guessed_all">Skvelá práca! Uhádli ste všetky</string>
+    <string name="words_right">slová správne.</string>
+    <string name="guessed_right">Hádali ste správne!</string>
+    <string name="guessed_wrong">Hádali ste nesprávne!</string>
+    <string name="pass_the_device_to_your_opponent_team_super_agent">Podajte zariadenie Super Agentovi druhého tímu.</string>
+    <string name="timer_is_already_on">Časovač je už zapnutý.</string>
+    <string name="timer_is_on">Časovač zapnutý.</string>
+    <string name="time_out">Čas vypršal.</string>
+    <string name="new_game">Nová hra</string>
+    <string name="settings">Nastavenia</string>
+    <string name="word_database">Databáza slov</string>
+    <string name="about">O aplikácii</string>
+    <string name="add">Pridať</string>
+    <string name="found_killer">Hádali ste nesprávne! Označili ste Killera.</string>
+    <string name="write_a_hint_here">Tu napíšte indíciu</string>
+
+    <string name="music_title">Hudba</string>
+    <string name="music_summary">Hranie hudby na pozadí</string>
+    <string name="timer_title">Dĺžka časovača</string>
+    <string name="timer_summary">Nastaviť dĺžku časovača</string>
+    <string name="pref_category_game">Nastavenia hry</string>
+    <string name="pref_category_general">Všeobecné nastavenia</string>
+
+    <string name="about_app">Táto aplikácia je konečným projektom jedného predmetu na univerzite kde študujem.
+Teda áno, som študent a mám rád stolové hry ako napríklad Krycie mená (ktorá ešte nebola na Google Play)
+        a preto som sa rozhodol naprogramovať túto hru. Je to jednoduchá aplikácia, ale verím, že sa vám bude páčiť. Bavte sa!\n\n
+Na tomto linku nájdete originálne pravidlá k tejto hre v pdf súbore:</string>
+    <string name="rules">Pravidlá</string>
+
+    <string name="enable_sound_effects">Povoliť v hre zvuky</string>
+    <string name="sounds">Zvuky</string>
+</resources>

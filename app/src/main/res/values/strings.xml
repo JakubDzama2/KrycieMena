@@ -1,0 +1,62 @@
+<resources>
+    <string name="app_name">Krycie Mená</string>
+    <string name="title_activity_settings">Settings</string>
+
+    <string name="low_number_of_words_in_database">It is not possible to start new game with the number of words in database less than 25. " +
+                    "Please, add some words to database first.</string>
+    <string name="pass_the_device_to_red_team_super_agent">Pass the device to RED team Super Agent.</string>
+    <string name="red_team_turn">RED TEAM\'S TURN</string>
+    <string name="blue_team_turn">BLUE TEAM\'S TURN</string>
+    <string name="end_turn">End turn</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="do_you_want_to_delete_word">Do you want to delete word:</string>
+    <string name="delete">DELETE</string>
+    <string name="delete_successful">Delete successful</string>
+    <string name="add_new_word">Add new word</string>
+    <string name="ok">Ok</string>
+    <string name="cancel">Cancel</string>
+    <string name="word_successfully_added">Word successfully added.</string>
+    <string name="do_you_want_to_end_your_turn">Do you want to end your turn?</string>
+    <string name="end_game">End game</string>
+    <string name="do_you_want_to_end_the_game">Do you want to end the game? Progress will not be saved.</string>
+    <string name="you_have_already_guessed_this_word">You have already guessed this word.</string>
+    <string name="do_you_want_to_guess_the_word">Do you want to guess the word</string>
+    <string name="guess">Guess</string>
+    <string name="blue_team_won">BLUE TEAM WON!</string>
+    <string name="red_team_won">RED TEAM WON!</string>
+    <string name="good_job_you_guessed_all">Good job! You guessed all</string>
+    <string name="words_right">words right.</string>
+    <string name="guessed_right">Guessed right!</string>
+    <string name="guessed_wrong">Guessed wrong!</string>
+    <string name="pass_the_device_to_your_opponent_team_super_agent">Pass the device to your opponent team Super Agent.</string>
+    <string name="timer_is_already_on">Timer is already ON.</string>
+    <string name="timer_is_on">Timer is ON.</string>
+    <string name="time_out">Time out.</string>
+    <string name="new_game">New game</string>
+    <string name="settings">Settings</string>
+    <string name="word_database">Word database</string>
+    <string name="about">About</string>
+    <string name="add">Add</string>
+    <string name="found_killer">Guessed wrong! You found a KILLER.</string>
+
+    <string name="timer_default_value">60000</string>
+    <string name="pref_timer_key">prefTimer</string>
+    <string name="pref_music_key">prefMusic</string>
+    <string name="music_title">Music</string>
+    <string name="music_summary">Playing music in background</string>
+    <string name="timer_title">Count down timer</string>
+    <string name="timer_summary">Set count down timer length</string>
+    <string name="pref_category_game">Game Settings</string>
+    <string name="pref_category_general">General Settings</string>
+    <string name="write_a_hint_here">Write a hint here</string>
+
+    <string name="about_app">This app is the final project of one subject at the university where I study.
+So, yes, I am a student and I like board games such as Krycie Mená (which were not uploaded on Google Play yet), so I decided to program this game.
+        It\'s a simple app, but I believe you\'ll like it. Enjoy the game!\n\nHere is the link with the original rules for this game in a pdf file:</string>
+    <string name="rules">Rules</string>
+    <string name="pref_sounds">prefSounds</string>
+    <string name="enable_sound_effects">Enable sound effects in game</string>
+    <string name="sounds">Sounds</string>
+
+</resources>

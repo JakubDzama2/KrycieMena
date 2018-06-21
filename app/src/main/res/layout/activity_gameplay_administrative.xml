@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/yellow_purple_background"
+    tools:context="sk.upjs.vma.kryciemena.GameplayAdministrativeActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <GridView
+            android:id="@+id/administrativeCardsGridView"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+
+            android:layout_weight="6"
+            android:columnWidth="50dp"
+            android:gravity="center"
+            android:horizontalSpacing="2dp"
+            android:numColumns="5"
+            android:stretchMode="columnWidth"
+            android:verticalSpacing="2dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1.1"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/administrativeEndTurnButton"
+                style="@style/Widget.AppCompat.Button"
+                android:layout_width="0dp"
+
+                android:layout_height="match_parent"
+                android:layout_marginBottom="2dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginStart="5dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:onClick="administrativeEndTurnButtonClick"
+                android:text="@string/end_turn"
+
+                android:textAlignment="center"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Large" />
+
+            <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:card="http://schemas.android.com/apk/res-auto"
+
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+
+                android:layout_marginBottom="2dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginStart="5dp"
+
+                android:layout_weight="2">
+
+                <EditText
+                    android:id="@+id/indiciaEditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+
+                    android:gravity="center"
+
+                    android:hint="@string/write_a_hint_here"
+
+                    android:textAlignment="center"
+                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Large" />
+
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:card="http://schemas.android.com/apk/res-auto"
+
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+
+                android:layout_marginBottom="2dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginStart="5dp"
+
+                android:layout_weight="0.5">
+
+                <android.support.v7.widget.AppCompatSpinner
+                    android:id="@+id/wordCountSpinner"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+
+                    android:textAlignment="center"
+                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"></android.support.v7.widget.AppCompatSpinner>
+
+            </android.support.v7.widget.CardView>
+
+
+        </LinearLayout>
+    </LinearLayout>
+
+</android.support.constraint.ConstraintLayout>

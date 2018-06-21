@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="timer_names">
+        <item name="30">0:30</item>
+        <item name="45">0:45</item>
+        <item name="100">1:00</item>
+        <item name="130">1:30</item>
+        <item name="200">2:00</item>
+    </string-array>
+    <string-array name="timer_values">
+        <item name="30">30000</item>
+        <item name="45">45000</item>
+        <item name="100">60000</item>
+        <item name="130">90000</item>
+        <item name="200">120000</item>
+    </string-array>
+
+</resources>
