@@ -2,23 +2,118 @@ package sk.upjs.vma.kryciemena;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.CheckBoxPreference;
 import android.preference.EditTextPreference;
 import android.preference.ListPreference;
 import android.preference.MultiSelectListPreference;
 import android.preference.Preference;
 import android.preference.PreferenceActivity;
+import android.preference.PreferenceCategory;
 import android.preference.PreferenceGroup;
 import android.preference.PreferenceManager;
+import android.preference.PreferenceScreen;
+import android.util.Log;
+
+import java.util.ArrayList;
+import java.util.Arrays;
 
 public class SettingsActivity extends PreferenceActivity implements SharedPreferences.OnSharedPreferenceChangeListener {
+
+    private MainMenuActivity mainMenuActivity;
+    public static final String CATEGORY_DEFAULT = String.valueOf(Integer.MAX_VALUE);
+    public static final String TIMER_DEFAULT = String.valueOf(60000);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         addPreferencesFromResource(R.xml.activity_settings);
-        PreferenceManager.setDefaultValues(this, R.xml.activity_settings,
-                false);
-        initSummary(this.getPreferenceScreen());
+//
+//        PreferenceScreen pScreen = getPreferenceManager().createPreferenceScreen(this);
+//
+//        if (pScreen == null) {
+//            Log.d("PREF", "onCreate: SCREEN JE NULLL");
+//        }
+//        PreferenceCategory preferenceCategory1 = new PreferenceCategory(this);
+//        preferenceCategory1.setTitle(R.string.pref_category_general);
+//        if (preferenceCategory1 == null) {
+//            Log.d("PREF", "onCreate: CATEG1 JE NULLL");
+//        }
+//
+//        CheckBoxPreference checkBoxPreference1 = new CheckBoxPreference(this);
+//        checkBoxPreference1.setKey(getString(R.string.pref_music_key));
+//        checkBoxPreference1.setTitle(R.string.music_title);
+//        checkBoxPreference1.setSummary(R.string.music_summary);
+//        checkBoxPreference1.setDefaultValue(true);
+//
+//        if (checkBoxPreference1 == null) {
+//            Log.d("PREF", "onCreate: CHECK1 JE NULLL");
+//        }
+//
+//        preferenceCategory1.addPreference(checkBoxPreference1);
+//
+//        CheckBoxPreference checkBoxPreference2 = new CheckBoxPreference(this);
+//        checkBoxPreference2.setKey(getString(R.string.pref_sounds));
+//        checkBoxPreference2.setTitle(R.string.sounds);
+//        checkBoxPreference2.setSummary(R.string.enable_sound_effects);
+//        checkBoxPreference2.setDefaultValue(true);
+//
+//        preferenceCategory1.addPreference(checkBoxPreference2);
+//
+//        pScreen.addPreference(preferenceCategory1);
+//
+//        PreferenceCategory preferenceCategory2 = new PreferenceCategory(this);
+//        preferenceCategory2.setTitle(R.string.pref_category_game);
+//
+//        ListPreference listPreference1 = new ListPreference(this);
+//        listPreference1.setKey(getString(R.string.pref_timer_key));
+//        listPreference1.setTitle(R.string.timer_title);
+//        listPreference1.setSummary(R.string.timer_summary);
+//        listPreference1.setEntries(R.array.timer_names);
+//        listPreference1.setEntryValues(R.array.timer_values);
+//        listPreference1.setDefaultValue(TIMER_DEFAULT);
+//
+//        preferenceCategory2.addPreference(listPreference1);
+        PreferenceCategory preferenceCategory = (PreferenceCategory) findPreference("game_settings_key");
+
+        if (preferenceCategory == null) {
+            Log.d("PREF", "onCreate: NUUUUUUUUUUUULLLL");
+        } else {
+            Log.d("PREF", "onCreate: OOOOOOKKKKKKK");
+            Log.d("PREF", "onCreate: " + preferenceCategory.getKey());
+        }
+
+
+
+        ArrayList<Category> categories = (ArrayList<Category>) getIntent().getExtras().get(MainMenuActivity.CATEGORIES);
+
+        ListPreference listPreference2 = new ListPreference(this);
+        listPreference2.setTitle(R.string.category);
+        listPreference2.setSummary(getString(R.string.choose_category));
+        listPreference2.setKey(getString(R.string.pref_category));
+        listPreference2.setDefaultValue(CATEGORY_DEFAULT);
+        String[] entries = new String[categories.size() + 1];
+        entries[0] = getString(R.string.all);
+        String[] entryValues = new String[categories.size() + 1];
+        entryValues[0] = CATEGORY_DEFAULT;
+        int i = 1;
+        for (Category category: categories) {
+            entries[i] = category.getCategory();
+            entryValues[i] = String.valueOf(category.getId());
+            i++;
+        }
+        Log.d("ENTRIES", "onCreate: " + Arrays.toString(entries));
+        Log.d("ENTRY_VALUES", "onCreate: " + Arrays.toString(entryValues));
+        listPreference2.setEntries(entries);
+        listPreference2.setEntryValues(entryValues);
+
+        preferenceCategory.addPreference(listPreference2);
+
+//        pScreen.addPreference(preferenceCategory2);
+//        setPreferenceScreen(pScreen);
+
+//        PreferenceManager.setDefaultValues(this, R.xml.activity_settings,
+//                false);
+//        initSummary(this.getPreferenceScreen());
     }
 
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences,

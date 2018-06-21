@@ -63,7 +63,7 @@ public class GameplayCooperativeActivity extends AppCompatActivity implements Ad
         timer = findViewById(R.id.countdownTimer);
 
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
-        String time = preferences.getString("prefTimer", getString(R.string.timer_default_value));
+        String time = preferences.getString("prefTimer", SettingsActivity.TIMER_DEFAULT);
         timerLength = Long.parseLong(time);
 
         musicOn = preferences.getBoolean(getString(R.string.pref_music_key), true);

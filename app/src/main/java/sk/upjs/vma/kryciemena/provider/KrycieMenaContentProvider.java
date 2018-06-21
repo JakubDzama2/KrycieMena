@@ -55,7 +55,8 @@ public class KrycieMenaContentProvider extends ContentProvider {
     public Cursor query(Uri uri, String[] projection, String selection,
                         String[] selectionArgs, String sortOrder) {
         SQLiteDatabase db = databaseOpenHelper.getReadableDatabase();
-        Cursor cursor = db.query(KrycieMenaContract.Word.TABLENAME, null, null, null, null, null, KrycieMenaContract.Word.WORD);
+        String tableName = getTableName(uri);
+        Cursor cursor = db.query(tableName, null, null, null, null, null, KrycieMenaContract.Word.WORD);
         return cursor;
     }
 
@@ -64,5 +65,11 @@ public class KrycieMenaContentProvider extends ContentProvider {
                       String[] selectionArgs) {
         // TODO: Implement this to handle requests to update one or more rows.
         throw new UnsupportedOperationException("Not yet implemented");
+    }
+
+    private String getTableName(Uri uri){
+        String value = uri.getPath();
+        value = value.replace("/", "");//we need to remove '/'
+        return value;
     }
 }

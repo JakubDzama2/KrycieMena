@@ -14,7 +14,7 @@
     <string name="delete">DELETE</string>
     <string name="delete_successful">Delete successful</string>
     <string name="add_new_word">Add new word</string>
-    <string name="ok">Ok</string>
+    <string name="ok">OK</string>
     <string name="cancel">Cancel</string>
     <string name="word_successfully_added">Word successfully added.</string>
     <string name="do_you_want_to_end_your_turn">Do you want to end your turn?</string>
@@ -40,9 +40,10 @@
     <string name="add">Add</string>
     <string name="found_killer">Guessed wrong! You found a KILLER.</string>
 
-    <string name="timer_default_value">60000</string>
+    <string name="pref_sounds">prefSounds</string>
     <string name="pref_timer_key">prefTimer</string>
     <string name="pref_music_key">prefMusic</string>
+    <string name="pref_category">prefCategory</string>
     <string name="music_title">Music</string>
     <string name="music_summary">Playing music in background</string>
     <string name="timer_title">Count down timer</string>
@@ -55,8 +56,14 @@
 So, yes, I am a student and I like board games such as Krycie Mená (which were not uploaded on Google Play yet), so I decided to program this game.
         It\'s a simple app, but I believe you\'ll like it. Enjoy the game!\n\nHere is the link with the original rules for this game in a pdf file:</string>
     <string name="rules">Rules</string>
-    <string name="pref_sounds">prefSounds</string>
     <string name="enable_sound_effects">Enable sound effects in game</string>
     <string name="sounds">Sounds</string>
+    <string name="new_category">New category</string>
+    <string name="category_successfully_added">Category successfully added.</string>
+    <string name="add_a_new_word_to_the_category">Add a new word to the category</string>
+    <string name="delete_the_category_and_all_its_words">Delete the category and its content</string>
+    <string name="all">All</string>
+    <string name="category">Category</string>
+    <string name="choose_category">Choose the category whose content will be used in a new game</string>
 
 </resources>

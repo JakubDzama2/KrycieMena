@@ -15,13 +15,13 @@
             android:defaultValue="true"/>
     </PreferenceCategory>
 
-    <PreferenceCategory android:title="@string/pref_category_game" >
+    <PreferenceCategory android:title="@string/pref_category_game"
+        android:key="game_settings_key">
 
         <ListPreference
             android:key="@string/pref_timer_key"
             android:title="@string/timer_title"
             android:summary="@string/timer_summary"
-            android:defaultValue="@string/timer_default_value"
             android:entries="@array/timer_names"
             android:entryValues="@array/timer_values"
             />

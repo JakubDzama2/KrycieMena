@@ -13,7 +13,7 @@
     <string name="delete">Vymazať</string>
     <string name="delete_successful">Vymazanie prebehlo úspešne</string>
     <string name="add_new_word">Pridať nové slovo</string>
-    <string name="ok">Ok</string>
+    <string name="ok">OK</string>
     <string name="cancel">Zrušiť</string>
     <string name="word_successfully_added">Slovo bolo úspešne pridané.</string>
     <string name="do_you_want_to_end_your_turn">Naozaj chcete ukončiť svoj ťah?</string>
@@ -55,4 +55,11 @@ Na tomto linku nájdete originálne pravidlá k tejto hre v pdf súbore:</string
 
     <string name="enable_sound_effects">Povoliť v hre zvuky</string>
     <string name="sounds">Zvuky</string>
+    <string name="new_category">Nová kategória</string>
+    <string name="category_successfully_added">Kategória bola úspešne vytvorená.</string>
+    <string name="add_a_new_word_to_the_category">Pridať nové slovo do kategórie</string>
+    <string name="delete_the_category_and_all_its_words">Vymazať kategóriu s celým jej obsahom</string>
+    <string name="all">Všetky</string>
+    <string name="category">Kategória</string>
+    <string name="choose_category">Vyberte kategóriu, ktorej obsah bude použitý pri novej hre</string>
 </resources>
