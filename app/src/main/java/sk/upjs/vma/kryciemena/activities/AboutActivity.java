@@ -1,19 +1,17 @@
-package sk.upjs.vma.kryciemena;
+package sk.upjs.vma.kryciemena.activities;
 
-import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.media.MediaPlayer;
 import android.net.Uri;
-import android.os.Environment;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
+import android.view.Menu;
 import android.view.View;
 
-import java.io.File;
-import java.util.HashMap;
+import sk.upjs.vma.kryciemena.managers.MusicManager;
+import sk.upjs.vma.kryciemena.R;
 
 public class AboutActivity extends AppCompatActivity {
 
@@ -36,6 +34,12 @@ public class AboutActivity extends AppCompatActivity {
         }
         Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(URL_PDF));
         startActivity(browserIntent);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        return super.onCreateOptionsMenu(menu);
     }
 
     @Override

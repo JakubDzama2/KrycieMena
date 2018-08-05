@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/yellow_purple_background"
-    tools:context="sk.upjs.vma.kryciemena.GameplayAdministrativeActivity">
+    tools:context="sk.upjs.vma.kryciemena.activities.GameplayAdministrativeActivity">
 
     <LinearLayout
         android:layout_width="match_parent"

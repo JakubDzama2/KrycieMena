@@ -1,4 +1,4 @@
-package sk.upjs.vma.kryciemena.provider;
+package sk.upjs.vma.kryciemena.database;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -6,11 +6,9 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
-import sk.upjs.vma.kryciemena.KrycieMenaContract;
+public class DatabaseOpenHelper extends SQLiteOpenHelper {
 
-public class DatabaseOpenHelper2 extends SQLiteOpenHelper {
-
-    public DatabaseOpenHelper2(Context context) {
+    public DatabaseOpenHelper(Context context) {
         super(context, KrycieMenaContract.Word.DATABASE_NAME, null, 1);
     }
 

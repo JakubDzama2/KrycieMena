@@ -1,4 +1,4 @@
-package sk.upjs.vma.kryciemena;
+package sk.upjs.vma.kryciemena.viewProviders;
 
 import android.content.Context;
 import android.widget.TextView;

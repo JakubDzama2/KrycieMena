@@ -11,6 +11,7 @@
     <string name="yes">Yes</string>
     <string name="no">No</string>
     <string name="do_you_want_to_delete_word">Do you want to delete word:</string>
+    <string name="do_you_want_to_delete_category">Do you want to delete category:</string>
     <string name="delete">DELETE</string>
     <string name="delete_successful">Delete successful</string>
     <string name="add_new_word">Add new word</string>

@@ -1,4 +1,4 @@
-package sk.upjs.vma.kryciemena;
+package sk.upjs.vma.kryciemena.activities;
 
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -24,6 +24,12 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import sk.upjs.vma.kryciemena.viewBinders.AdministrativeViewBinder;
+import sk.upjs.vma.kryciemena.viewBinders.CooperativeViewBinder;
+import sk.upjs.vma.kryciemena.database.KrycieMenaContract;
+import sk.upjs.vma.kryciemena.managers.MusicManager;
+import sk.upjs.vma.kryciemena.R;
+import sk.upjs.vma.kryciemena.viewProviders.TextViewProvider;
 import sk.upjs.vma.kryciemena.gameLogic.Card;
 import sk.upjs.vma.kryciemena.gameLogic.Game;
 

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/image_21337_19_v1"
-    tools:context="sk.upjs.vma.kryciemena.MainMenuActivity">
+    tools:context="sk.upjs.vma.kryciemena.activities.MainMenuActivity">
 
 
     <Button

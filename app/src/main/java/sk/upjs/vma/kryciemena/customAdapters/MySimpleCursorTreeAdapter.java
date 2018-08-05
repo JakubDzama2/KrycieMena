@@ -1,23 +1,20 @@
-package sk.upjs.vma.kryciemena;
+package sk.upjs.vma.kryciemena.customAdapters;
 
 import java.util.HashMap;
 
 import android.content.Context;
-import android.content.DialogInterface;
 import android.database.Cursor;
 import android.provider.ContactsContract;
 import android.content.Loader;
 import android.util.Log;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.SimpleCursorTreeAdapter;
-import android.widget.TextView;
+
+import sk.upjs.vma.kryciemena.activities.WordDatabaseActivity;
 
 public class MySimpleCursorTreeAdapter extends SimpleCursorTreeAdapter {
 
     private final String LOG_TAG = getClass().getSimpleName().toString();
-    private WordDatabaseActivity2 wordDatabaseActivity2;
+    private WordDatabaseActivity wordDatabaseActivity;
     protected final HashMap<Integer, Integer> mGroupMap;
     protected final HashMap<Integer, Integer> posToIdGroupMap;
 
@@ -29,7 +26,7 @@ public class MySimpleCursorTreeAdapter extends SimpleCursorTreeAdapter {
 
         super(context, null, groupLayout, groupFrom, groupTo, childLayout,
                 childrenFrom, childrenTo);
-        wordDatabaseActivity2 = (WordDatabaseActivity2) context;
+        wordDatabaseActivity = (WordDatabaseActivity) context;
         mGroupMap = new HashMap<Integer, Integer>();
         posToIdGroupMap = new HashMap<>();
     }
@@ -46,12 +43,12 @@ public class MySimpleCursorTreeAdapter extends SimpleCursorTreeAdapter {
 
         mGroupMap.put(groupId, groupPos);
         posToIdGroupMap.put(groupPos, groupId);
-        Loader<Cursor> loader = wordDatabaseActivity2.getLoaderManager().getLoader(groupId);
+        Loader<Cursor> loader = wordDatabaseActivity.getLoaderManager().getLoader(groupId);
         if (loader != null && !loader.isReset()) {
-            wordDatabaseActivity2.getLoaderManager()
-                    .restartLoader(groupId, null, wordDatabaseActivity2);
+            wordDatabaseActivity.getLoaderManager()
+                    .restartLoader(groupId, null, wordDatabaseActivity);
         } else {
-            wordDatabaseActivity2.getLoaderManager().initLoader(groupId, null, wordDatabaseActivity2);
+            wordDatabaseActivity.getLoaderManager().initLoader(groupId, null, wordDatabaseActivity);
         }
 
         return null;

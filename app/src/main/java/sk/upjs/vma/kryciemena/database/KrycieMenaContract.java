@@ -1,4 +1,4 @@
-package sk.upjs.vma.kryciemena;
+package sk.upjs.vma.kryciemena.database;
 
 import android.content.ContentResolver;
 import android.content.Context;

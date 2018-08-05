@@ -1,8 +1,7 @@
-package sk.upjs.vma.kryciemena;
+package sk.upjs.vma.kryciemena.activities;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.preference.CheckBoxPreference;
 import android.preference.EditTextPreference;
 import android.preference.ListPreference;
 import android.preference.MultiSelectListPreference;
@@ -11,16 +10,22 @@ import android.preference.PreferenceActivity;
 import android.preference.PreferenceCategory;
 import android.preference.PreferenceGroup;
 import android.preference.PreferenceManager;
-import android.preference.PreferenceScreen;
 import android.util.Log;
+import android.view.Menu;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
+
+import sk.upjs.vma.kryciemena.database.Category;
+import sk.upjs.vma.kryciemena.managers.MusicManager;
+import sk.upjs.vma.kryciemena.R;
 
 public class SettingsActivity extends PreferenceActivity implements SharedPreferences.OnSharedPreferenceChangeListener {
 
     private MainMenuActivity mainMenuActivity;
-    public static final String CATEGORY_DEFAULT = String.valueOf(Integer.MAX_VALUE);
+    public Set<String> categoryDefault = new HashSet<>();
     public static final String TIMER_DEFAULT = String.valueOf(60000);
 
     @Override
@@ -86,23 +91,22 @@ public class SettingsActivity extends PreferenceActivity implements SharedPrefer
 
         ArrayList<Category> categories = (ArrayList<Category>) getIntent().getExtras().get(MainMenuActivity.CATEGORIES);
 
-        ListPreference listPreference2 = new ListPreference(this);
+        MultiSelectListPreference listPreference2 = new MultiSelectListPreference(this);
         listPreference2.setTitle(R.string.category);
         listPreference2.setSummary(getString(R.string.choose_category));
         listPreference2.setKey(getString(R.string.pref_category));
-        listPreference2.setDefaultValue(CATEGORY_DEFAULT);
-        String[] entries = new String[categories.size() + 1];
-        entries[0] = getString(R.string.all);
-        String[] entryValues = new String[categories.size() + 1];
-        entryValues[0] = CATEGORY_DEFAULT;
-        int i = 1;
+        String[] entries = new String[categories.size()];
+        String[] entryValues = new String[categories.size()];
+        int i = 0;
         for (Category category: categories) {
             entries[i] = category.getCategory();
             entryValues[i] = String.valueOf(category.getId());
+            categoryDefault.add(String.valueOf(category.getId()));
             i++;
         }
         Log.d("ENTRIES", "onCreate: " + Arrays.toString(entries));
         Log.d("ENTRY_VALUES", "onCreate: " + Arrays.toString(entryValues));
+        listPreference2.setDefaultValue(categoryDefault);
         listPreference2.setEntries(entries);
         listPreference2.setEntryValues(entryValues);
 
@@ -154,10 +158,10 @@ public class SettingsActivity extends PreferenceActivity implements SharedPrefer
                 p.setSummary(editTextPref.getText());
             }
         }
-        if (p instanceof MultiSelectListPreference) {
-            EditTextPreference editTextPref = (EditTextPreference) p;
-            p.setSummary(editTextPref.getText());
-        }
+//        if (p instanceof MultiSelectListPreference) {
+//            EditTextPreference editTextPref = (EditTextPreference) p;
+//            p.setSummary(editTextPref.getText());
+//        }
     }
 
     @Override

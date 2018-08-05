@@ -1,4 +1,4 @@
-package sk.upjs.vma.kryciemena;
+package sk.upjs.vma.kryciemena.viewBinders;
 
 import android.graphics.Paint;
 import android.util.DisplayMetrics;
@@ -8,6 +8,7 @@ import android.view.WindowManager;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
 
+import sk.upjs.vma.kryciemena.R;
 import sk.upjs.vma.kryciemena.gameLogic.Card;
 import sk.upjs.vma.kryciemena.gameLogic.Game;
 

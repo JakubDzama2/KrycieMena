@@ -1,4 +1,4 @@
-package sk.upjs.vma.kryciemena;
+package sk.upjs.vma.kryciemena.activities;
 
 import android.app.AlertDialog;
 import android.app.LoaderManager;
@@ -15,25 +15,25 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.view.ContextMenu;
 import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ExpandableListView;
 import android.widget.ImageButton;
-import android.widget.ListView;
-import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.HashMap;
 
-public class WordDatabaseActivity2 extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Cursor> {
+import sk.upjs.vma.kryciemena.database.KrycieMenaContract;
+import sk.upjs.vma.kryciemena.managers.MusicManager;
+import sk.upjs.vma.kryciemena.customAdapters.MySimpleCursorTreeAdapter;
+import sk.upjs.vma.kryciemena.R;
+import sk.upjs.vma.kryciemena.viewProviders.TextViewProvider;
+
+public class WordDatabaseActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Cursor> {
 
 
     private final String LOG_TAG = getClass().getSimpleName().toString();
@@ -81,12 +81,16 @@ public class WordDatabaseActivity2 extends AppCompatActivity implements LoaderMa
 
                     @Override
                     public void onClick(View view) {
+                        if (soundsOn) {
+                            MediaPlayer.create(WordDatabaseActivity.this, R.raw.button_click).start();
+                        }
+
                         final long id = adapter.getChildId(groupPosition, childPosition);
                         TextView textView = (TextView) resultView.findViewById(R.id.wordTextView);
 
-                        new android.app.AlertDialog.Builder(WordDatabaseActivity2.this)
+                        new android.app.AlertDialog.Builder(WordDatabaseActivity.this)
                                 .setTitle(R.string.delete)
-                                .setView(TextViewProvider.getTextViewForAlertDialog(WordDatabaseActivity2.this, getString(R.string.do_you_want_to_delete_word) + " " + textView.getText().toString()))
+                                .setView(TextViewProvider.getTextViewForAlertDialog(WordDatabaseActivity.this, getString(R.string.do_you_want_to_delete_word) + " " + textView.getText().toString()))
                                 .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
                                     @Override
                                     public void onClick(DialogInterface dialogInterface, int i) {
@@ -94,7 +98,7 @@ public class WordDatabaseActivity2 extends AppCompatActivity implements LoaderMa
 //                                        int groupId = adapter.getPosToIdGroupMap().get(groupPosition);
 //                                        Loader<Cursor> loader = getLoaderManager().getLoader(groupId);
 //                                        if (loader != null && !loader.isReset()) {
-//                                            getLoaderManager().restartLoader(groupId, null, WordDatabaseActivity2.this);
+//                                            getLoaderManager().restartLoader(groupId, null, WordDatabaseActivity.this);
 //                                        }
                                     }
                                 })
@@ -109,6 +113,96 @@ public class WordDatabaseActivity2 extends AppCompatActivity implements LoaderMa
                 });
                 return resultView;
             }
+
+            @Override
+            public View getGroupView(final int groupPosition, final boolean isExpanded, View convertView, ViewGroup parent) {
+                final View resultView = super.getGroupView(groupPosition, isExpanded, convertView, parent);
+                final TextView textView = (TextView) resultView.findViewById(R.id.categoryTextView);
+                textView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        if (soundsOn) {
+                            MediaPlayer.create(WordDatabaseActivity.this, R.raw.button_click).start();
+                        }
+                        if (isExpanded) {
+                            expandableListView.collapseGroup(groupPosition);
+                        } else {
+                            expandableListView.expandGroup(groupPosition, true);
+                        }
+                    }
+                });
+
+                ImageButton deleteButton = (ImageButton) resultView.findViewById(R.id.deleteCategoryButton);
+                deleteButton.setOnClickListener(new View.OnClickListener() {
+
+                    @Override
+                    public void onClick(View view) {
+                        if (soundsOn) {
+                            MediaPlayer.create(WordDatabaseActivity.this, R.raw.button_click).start();
+                        }
+
+                        final long id = adapter.getGroupId(groupPosition);
+
+                        new android.app.AlertDialog.Builder(WordDatabaseActivity.this)
+                                .setTitle(R.string.delete)
+                                .setView(TextViewProvider.getTextViewForAlertDialog(WordDatabaseActivity.this, getString(R.string.do_you_want_to_delete_category) + " " + textView.getText().toString()))
+                                .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialogInterface, int i) {
+                                        deleteCategory(id);
+//                                        int groupId = adapter.getPosToIdGroupMap().get(groupPosition);
+//                                        Loader<Cursor> loader = getLoaderManager().getLoader(groupId);
+//                                        if (loader != null && !loader.isReset()) {
+//                                            getLoaderManager().restartLoader(groupId, null, WordDatabaseActivity.this);
+//                                        }
+                                    }
+                                })
+                                .setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialogInterface, int i) {
+                                        dialogInterface.dismiss();
+                                    }
+                                })
+                                .show();
+                    }
+                });
+
+                ImageButton addButton = (ImageButton) resultView.findViewById(R.id.addWordButton);
+                addButton.setOnClickListener(new View.OnClickListener() {
+
+                    @Override
+                    public void onClick(View view) {
+                        if (soundsOn) {
+                            MediaPlayer.create(WordDatabaseActivity.this, R.raw.button_click).start();
+                        }
+
+                        final long id = adapter.getGroupId(groupPosition);
+                        final EditText editText = new EditText(WordDatabaseActivity.this);
+                        new AlertDialog.Builder(WordDatabaseActivity.this)
+                                .setTitle(R.string.add_new_word)
+                                .setView(editText)
+                                .setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialogInterface, int i) {
+                                        saveWord(id, editText.getText().toString());
+//                                Loader<Cursor> loader = getLoaderManager().getLoader((int) info.id);
+//                                if (loader != null && !loader.isReset()) {
+//                                    getLoaderManager().restartLoader(loader.getId(), null, WordDatabaseActivity.this);
+//                                }
+                                    }
+                                })
+                                .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialogInterface, int i) {
+                                        dialogInterface.dismiss();
+                                    }
+                                }).show();
+                    }
+                });
+
+                return resultView;
+            }
+
         };
 
         expandableListView.setAdapter(adapter);
@@ -120,7 +214,7 @@ public class WordDatabaseActivity2 extends AppCompatActivity implements LoaderMa
             getLoaderManager().initLoader(LOADER_ID, null, this);
         }
 
-        registerForContextMenu(expandableListView);
+//        registerForContextMenu(expandableListView);
     }
 
     @Override
@@ -205,7 +299,7 @@ public class WordDatabaseActivity2 extends AppCompatActivity implements LoaderMa
         AsyncQueryHandler asyncQueryHandler = new AsyncQueryHandler(getContentResolver()) {
             @Override
             protected void onDeleteComplete(int token, Object cookie, int result) {
-                Toast.makeText(WordDatabaseActivity2.this, R.string.delete_successful, Toast.LENGTH_LONG).show();
+                Toast.makeText(WordDatabaseActivity.this, R.string.delete_successful, Toast.LENGTH_LONG).show();
             }
         };
         Uri uri = Uri.withAppendedPath(KrycieMenaContract.Word.CONTENT_URI, String.valueOf(id));
@@ -218,7 +312,7 @@ public class WordDatabaseActivity2 extends AppCompatActivity implements LoaderMa
         AsyncQueryHandler asyncQueryHandler = new AsyncQueryHandler(getContentResolver()) {
             @Override
             protected void onDeleteComplete(int token, Object cookie, int result) {
-                Toast.makeText(WordDatabaseActivity2.this, R.string.delete_successful, Toast.LENGTH_LONG).show();
+                Toast.makeText(WordDatabaseActivity.this, R.string.delete_successful, Toast.LENGTH_LONG).show();
             }
         };
         Uri uri = Uri.withAppendedPath(KrycieMenaContract.Category.CONTENT_URI, String.valueOf(id));
@@ -238,7 +332,7 @@ public class WordDatabaseActivity2 extends AppCompatActivity implements LoaderMa
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.addCategory) {
             if (soundsOn) {
-                MediaPlayer.create(WordDatabaseActivity2.this, R.raw.button_click).start();
+                MediaPlayer.create(WordDatabaseActivity.this, R.raw.button_click).start();
             }
 
             final EditText editText = new EditText(this);
@@ -251,7 +345,7 @@ public class WordDatabaseActivity2 extends AppCompatActivity implements LoaderMa
                             saveCategory(editText.getText().toString());
 //                            Loader<Cursor> loader = getLoaderManager().getLoader(LOADER_ID);
 //                            if (loader != null && !loader.isReset()) {
-//                                getLoaderManager().restartLoader(LOADER_ID, null, WordDatabaseActivity2.this);
+//                                getLoaderManager().restartLoader(LOADER_ID, null, WordDatabaseActivity.this);
 //                            }
                         }
                     })
@@ -272,7 +366,7 @@ public class WordDatabaseActivity2 extends AppCompatActivity implements LoaderMa
         AsyncQueryHandler asyncQueryHandler = new AsyncQueryHandler(getContentResolver()) {
             @Override
             protected void onInsertComplete(int token, Object cookie, Uri uri) {
-                Toast.makeText(WordDatabaseActivity2.this, R.string.category_successfully_added, Toast.LENGTH_LONG).show();
+                Toast.makeText(WordDatabaseActivity.this, R.string.category_successfully_added, Toast.LENGTH_LONG).show();
             }
         };
         asyncQueryHandler.startInsert(0, null, KrycieMenaContract.Category.CONTENT_URI, values);
@@ -286,7 +380,7 @@ public class WordDatabaseActivity2 extends AppCompatActivity implements LoaderMa
         AsyncQueryHandler asyncQueryHandler = new AsyncQueryHandler(getContentResolver()) {
             @Override
             protected void onInsertComplete(int token, Object cookie, Uri uri) {
-                Toast.makeText(WordDatabaseActivity2.this, R.string.word_successfully_added, Toast.LENGTH_LONG).show();
+                Toast.makeText(WordDatabaseActivity.this, R.string.word_successfully_added, Toast.LENGTH_LONG).show();
             }
         };
         asyncQueryHandler.startInsert(0, null, KrycieMenaContract.Word.CONTENT_URI, values);
@@ -295,61 +389,12 @@ public class WordDatabaseActivity2 extends AppCompatActivity implements LoaderMa
     @Override
     public boolean onSupportNavigateUp() {
         if (soundsOn) {
-            MediaPlayer.create(WordDatabaseActivity2.this, R.raw.button_click).start();
+            MediaPlayer.create(WordDatabaseActivity.this, R.raw.button_click).start();
         }
         finish();
         return super.onSupportNavigateUp();
     }
 
-    @Override
-    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
-        super.onCreateContextMenu(menu, v, menuInfo);
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.word_database_context_menu, menu);
-    }
-
-    @Override
-    public boolean onContextItemSelected(MenuItem item) {
-//        AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
-        final ExpandableListView.ExpandableListContextMenuInfo info = (ExpandableListView.ExpandableListContextMenuInfo) item.getMenuInfo();
-
-        Log.d("MENU", "onContextItemSelected: id: " + info.id + " position: " + info.packedPosition);
-        switch(item.getItemId()) {
-            case R.id.addWord:
-                final EditText editText = new EditText(this);
-                new AlertDialog.Builder(this)
-                        .setTitle(R.string.add_new_word)
-                        .setView(editText)
-                        .setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialogInterface, int i) {
-                                saveWord(info.id, editText.getText().toString());
-//                                Loader<Cursor> loader = getLoaderManager().getLoader((int) info.id);
-//                                if (loader != null && !loader.isReset()) {
-//                                    getLoaderManager().restartLoader(loader.getId(), null, WordDatabaseActivity2.this);
-//                                }
-                            }
-                        })
-                        .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialogInterface, int i) {
-                                dialogInterface.dismiss();
-                            }
-                        }).show();
-
-
-                return true;
-            case R.id.deleteCategory:
-                deleteCategory(info.id);
-//                Loader<Cursor> loader = getLoaderManager().getLoader(LOADER_ID);
-//                if (loader != null && !loader.isReset()) {
-//                    getLoaderManager().restartLoader(LOADER_ID, null, WordDatabaseActivity2.this);
-//                }
-                return true;
-            default:
-                return super.onContextItemSelected(item);
-        }
-    }
 
     @Override
     protected void onPause() {

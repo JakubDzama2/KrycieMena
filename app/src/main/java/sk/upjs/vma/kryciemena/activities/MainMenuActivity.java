@@ -1,4 +1,4 @@
-package sk.upjs.vma.kryciemena;
+package sk.upjs.vma.kryciemena.activities;
 
 import android.app.LoaderManager;
 import android.content.CursorLoader;
@@ -16,8 +16,16 @@ import android.view.View;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
+import sk.upjs.vma.kryciemena.database.Category;
+import sk.upjs.vma.kryciemena.database.KrycieMenaContract;
+import sk.upjs.vma.kryciemena.managers.MusicManager;
+import sk.upjs.vma.kryciemena.R;
+import sk.upjs.vma.kryciemena.viewProviders.TextViewProvider;
 import sk.upjs.vma.kryciemena.gameLogic.Game;
 
 public class MainMenuActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Cursor> {
@@ -86,7 +94,7 @@ public class MainMenuActivity extends AppCompatActivity implements LoaderManager
             MediaPlayer.create(this, R.raw.button_click).start();
         }
 
-        Intent intent = new Intent(this, WordDatabaseActivity2.class);
+        Intent intent = new Intent(this, WordDatabaseActivity.class);
         startActivity(intent);
     }
 
@@ -103,24 +111,47 @@ public class MainMenuActivity extends AppCompatActivity implements LoaderManager
     public Loader<Cursor> onCreateLoader(int id, Bundle bundle) {
         if (id == LOADER_WORD_ID) {
             SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
-            String category = preferences.getString(getString(R.string.pref_category), SettingsActivity.CATEGORY_DEFAULT);
-            Log.d("CATEGORY", "onCreateLoader: " + category);
-            if (category.equals(SettingsActivity.CATEGORY_DEFAULT)) {
-                CursorLoader cursorLoader = new CursorLoader(this);
-                cursorLoader.setUri(KrycieMenaContract.Word.CONTENT_URI);
-                return cursorLoader;
-            } else {
-                CursorLoader cursorLoader = new CursorLoader(
-                        this,
+//            String category = preferences.getString(getString(R.string.pref_category), SettingsActivity.categoryDefault);
+
+            HashSet<String> hashSet = new HashSet<>();
+            hashSet.add("1");
+            Set<String> categories = preferences.getStringSet(getString(R.string.pref_category), hashSet);
+            Log.d("CATEGORY", "onCreateLoader: " + categories);
+
+            if (categories.size() == 0) {
+                CursorLoader cursorLoader = new CursorLoader(this,
                         KrycieMenaContract.Word.CONTENT_URI,
                         null,
-                        KrycieMenaContract.Word.CATEGORY_ID + " = ?",
-                        new String[]{category},
-                        KrycieMenaContract.Word.WORD);
-
+                        KrycieMenaContract.Word._ID + " = ?",
+                        new String[]{String.valueOf(Integer.MIN_VALUE)},
+                        null);
                 return cursorLoader;
             }
+
+            StringBuilder selection = new StringBuilder();
+            for (int i = 0; i < categories.size() - 1; i++) {
+                selection.append(KrycieMenaContract.Word.CATEGORY_ID + " = ? OR ");
+            }
+            selection.append(KrycieMenaContract.Word.CATEGORY_ID + " = ?");
+
+            String[] categoriesArray = new String[categories.size()];
+            int i = 0;
+            for (String category : categories) {
+                categoriesArray[i] = category;
+                i++;
+            }
+
+            CursorLoader cursorLoader = new CursorLoader(
+                    this,
+                    KrycieMenaContract.Word.CONTENT_URI,
+                    null,
+                    selection.toString(),
+                    categoriesArray,
+                    KrycieMenaContract.Word.WORD);
+
+            return cursorLoader;
         }
+
         if (id == LOADER_CATEGORY_ID) {
             CursorLoader cursorLoader = new CursorLoader(this);
             cursorLoader.setUri(KrycieMenaContract.Category.CONTENT_URI);

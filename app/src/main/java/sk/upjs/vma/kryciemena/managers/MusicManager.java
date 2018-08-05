@@ -1,4 +1,4 @@
-package sk.upjs.vma.kryciemena;
+package sk.upjs.vma.kryciemena.managers;
 
 import java.io.Serializable;
 import java.util.Collection;
@@ -7,6 +7,8 @@ import java.util.HashMap;
 import android.content.Context;
 import android.media.MediaPlayer;
 import android.util.Log;
+
+import sk.upjs.vma.kryciemena.R;
 
 
 /**

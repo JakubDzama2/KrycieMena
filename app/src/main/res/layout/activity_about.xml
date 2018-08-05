@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="sk.upjs.vma.kryciemena.AboutActivity"
+    tools:context="sk.upjs.vma.kryciemena.activities.AboutActivity"
     android:background="@drawable/yellow_purple_background">
 
     <TextView

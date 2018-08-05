@@ -10,6 +10,7 @@
     <string name="yes">Áno</string>
     <string name="no">Nie</string>
     <string name="do_you_want_to_delete_word">Naozaj chcete vymazať slovo:</string>
+    <string name="do_you_want_to_delete_category">Naozaj chcete vymazať kategóriu:</string>
     <string name="delete">Vymazať</string>
     <string name="delete_successful">Vymazanie prebehlo úspešne</string>
     <string name="add_new_word">Pridať nové slovo</string>
@@ -62,4 +63,24 @@ Na tomto linku nájdete originálne pravidlá k tejto hre v pdf súbore:</string
     <string name="all">Všetky</string>
     <string name="category">Kategória</string>
     <string name="choose_category">Vyberte kategóriu, ktorej obsah bude použitý pri novej hre</string>
+
+    <string-array name="timer_names">
+        <item name="30">0:30</item>
+        <item name="45">0:45</item>
+        <item name="100">1:00</item>
+        <item name="130">1:30</item>
+        <item name="200">2:00</item>
+    </string-array>
+    <string-array name="timer_values">
+        <item name="30">30000</item>
+        <item name="45">45000</item>
+        <item name="100">60000</item>
+        <item name="130">90000</item>
+        <item name="200">120000</item>
+    </string-array>
+
+    <string name="pref_sounds">prefSounds</string>
+    <string name="pref_timer_key">prefTimer</string>
+    <string name="pref_music_key">prefMusic</string>
+    <string name="pref_category">prefCategory</string>
 </resources>

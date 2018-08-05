@@ -1,4 +1,4 @@
-package sk.upjs.vma.kryciemena.provider;
+package sk.upjs.vma.kryciemena.database;
 
 import android.content.ContentProvider;
 import android.content.ContentValues;
@@ -6,11 +6,9 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 
-import sk.upjs.vma.kryciemena.KrycieMenaContract;
+public class KrycieMenaContentProvider extends ContentProvider {
 
-public class KrycieMenaContentProvider2 extends ContentProvider {
-
-    private DatabaseOpenHelper2 databaseOpenHelper;
+    private DatabaseOpenHelper databaseOpenHelper;
 
     @Override
     public int delete(Uri uri, String selection, String[] selectionArgs) {
@@ -69,7 +67,7 @@ public class KrycieMenaContentProvider2 extends ContentProvider {
 
     @Override
     public boolean onCreate() {
-        databaseOpenHelper = new DatabaseOpenHelper2(getContext());
+        databaseOpenHelper = new DatabaseOpenHelper(getContext());
         return true;
     }
 
